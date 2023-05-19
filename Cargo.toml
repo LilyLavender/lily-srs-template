@@ -1,8 +1,8 @@
 [package]
 name = "smashline_test"
-version = "0.1"
+version = "0.1.0"
 authors = ["LilyLambda"]
-edition = "0.1"
+edition = "2018"
 
 [package.metadata.skyline]
 titleid = "01006A800016E000"
