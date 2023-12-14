@@ -10,7 +10,7 @@ use {
 	smashline::*
 };
 
-// Game, effect, statuses
+// Game, effect, sound, etc
 unsafe extern "C" fn FUNCTIONNAME(agent: &mut L2CAgentBase) {
 	
 }
@@ -20,6 +20,11 @@ unsafe extern "C" fn fighter_frame(fighter: &mut L2CFighterCommon) {
 	unsafe {
 		
 	}
+}
+
+// Statuses
+unsafe extern "C" fn FUNCTIONNAME(fighter: &mut L2CFighterCommon) {
+	
 }
 
 pub fn install() {
