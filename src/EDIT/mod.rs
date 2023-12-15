@@ -39,15 +39,19 @@ unsafe extern "C" fn STATUSSCRIPTNAME(fighter: &mut L2CFighterCommon) -> L2CValu
 }
 
 pub fn install() {
+	// Game, effect, sound, expression
     smashline::install_acmd_scripts!(
         ACMDSCRIPTNAME
     );
+	// Global fighter frame
     smashline::install_agent_frame_callbacks!(
 		global_fighter_frame
     );
+	// Agent fighter frame
     smashline::install_agent_frames!(
         AGENTFRAMENAME
     );
+	// Status Script
     install_status_scripts!(
 		STATUSSCRIPTNAME
 	);
