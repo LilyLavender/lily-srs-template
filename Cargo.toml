@@ -1,7 +1,7 @@
 [package]
 name = "smashline_test"
 version = "0.1.0"
-authors = ["jam1garner <jam1.mcleod@hotmail.com>"]
+authors = ["LilyLambda"]
 edition = "2018"
 
 [package.metadata.skyline]
