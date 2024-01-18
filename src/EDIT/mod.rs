@@ -4,34 +4,33 @@ use {
         phx::*,
         app::{sv_animcmd::*, lua_bind::*, *},
         lib::{lua_const::*, L2CValue, L2CAgent},
-		hash40
+        hash40
     },
     smash_script::*,
-	smashline::*
+    smashline::*
 };
 
-// Game, effect, sound, etc
-unsafe extern "C" fn FUNCTIONNAME(agent: &mut L2CAgentBase) {
-	
+// Game acmd script
+unsafe extern "C" fn example_acmd_script(agent: &mut L2CAgentBase) {
+    
 }
 
-// Fighter frame
+// Char opff
 unsafe extern "C" fn fighter_frame(fighter: &mut L2CFighterCommon) {
-	unsafe {
-		
-	}
+    unsafe {
+        
+    }
 }
 
-// Statuses
-unsafe extern "C" fn FUNCTIONNAME(fighter: &mut L2CFighterCommon) {
-	
+// Status Script
+unsafe extern "C" fn example_status_script(fighter: &mut L2CFighterCommon) -> L2CValue {
+    0.into()
 }
 
 pub fn install() {
-	Agent::new("FIGHTERNAME")
-		.game_acmd("game_NAME", GAMEFUNCTIONNAME)
-		.effect_acmd("effect_NAME", EFFFUNCTIONNAME)
-		.on_line(Main, fighter_frame)
-		.status(Main, *FIGHTER_STATUS_KIND_SPECIAL_N, STATUSFUNCTIONNAME)
-		.install();
+    Agent::new("mario")
+        .game_acmd("game_ATTACK_NAME_HERE", example_acmd_script)
+        .on_line(Main, fighter_frame)
+        .status(Main, *FIGHTER_MARIO_STATUS_KIND_SPECIAL_LW_CHARGE, example_status_script)
+        .install();
 }
