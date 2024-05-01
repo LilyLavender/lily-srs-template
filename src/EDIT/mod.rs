@@ -7,7 +7,7 @@ use {
         hash40
     },
     smash_script::*,
-    smashline::*
+    smashline::{*, Priority::*}
 };
 
 // Game acmd script
@@ -29,7 +29,7 @@ unsafe extern "C" fn example_status_script(fighter: &mut L2CFighterCommon) -> L2
 
 pub fn install() {
     Agent::new("mario")
-        .game_acmd("game_ATTACK_NAME_HERE", example_acmd_script) // Game acmd script
+        .game_acmd("game_ATTACK_NAME_HERE", example_acmd_script, Default) // Game acmd script
         .on_line(Main, fighter_frame) // Char opff
         .status(Main, *FIGHTER_MARIO_STATUS_KIND_SPECIAL_LW_CHARGE, example_status_script) // Status script
         .install();
