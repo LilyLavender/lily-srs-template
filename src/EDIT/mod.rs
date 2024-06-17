@@ -7,52 +7,33 @@ use {
         hash40
     },
     smash_script::*,
-    smashline::*
+    smashline::{*, Priority::*}
 };
 
 // Game acmd script
-#[acmd_script( agent = "mario", script = "game_ATTACK_NAME_HERE", category = ACMD_GAME, low_priority )]
-unsafe fn example_acmd_script(agent: &mut L2CAgentBase) {
+unsafe extern "C" fn example_acmd_script(agent: &mut L2CAgentBase) {
     
 }
 
-// Global opff
-#[fighter_frame_callback]
-pub fn global_fighter_frame(fighter : &mut L2CFighterCommon) {
+// Char opff, Global opff
+unsafe extern "C" fn fighter_frame(fighter: &mut L2CFighterCommon) {
     unsafe {
         
     }
 }
 
-// Char opff
-#[fighter_frame( agent = FIGHTER_KIND_MARIO )]
-fn mario_frame(fighter: &mut L2CFighterCommon) {
-    unsafe {
-        
-    }
-}
-
-// Status Script
-#[status_script(agent = "mario", status = FIGHTER_MARIO_STATUS_KIND_SPECIAL_LW_CHARGE, condition = LUA_SCRIPT_STATUS_FUNC_STATUS_MAIN)]
+// Status script
 unsafe extern "C" fn example_status_script(fighter: &mut L2CFighterCommon) -> L2CValue {
     0.into()
 }
 
 pub fn install() {
-    // Game, effect, sound, expression
-    smashline::install_acmd_scripts!(
-        example_acmd_script
-    );
-    // Global fighter frame
-    smashline::install_agent_frame_callbacks!(
-        global_fighter_frame
-    );
-    // Agent fighter frame
-    smashline::install_agent_frames!(
-        mario_frame
-    );
-    // Status Script
-    install_status_scripts!(
-        example_status_script
-    );
+    Agent::new("mario")
+        .game_acmd("game_ATTACK_NAME_HERE", example_acmd_script, Default) // Game acmd script
+        .on_line(Main, fighter_frame) // Char opff
+        .status(Main, *FIGHTER_MARIO_STATUS_KIND_SPECIAL_LW_CHARGE, example_status_script) // Status script
+        .install();
+    Agent::new("fighter")
+        .on_line(Main, fighter_frame) // Global opff
+        .install();
 }
