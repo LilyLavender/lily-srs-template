@@ -17,9 +17,7 @@ unsafe extern "C" fn example_acmd_script(agent: &mut L2CAgentBase) {
 
 // Char opff, Global opff
 unsafe extern "C" fn fighter_frame(fighter: &mut L2CFighterCommon) {
-    unsafe {
-        
-    }
+    
 }
 
 // Status script
